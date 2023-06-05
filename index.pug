@@ -1,0 +1,37 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="./style/style.css")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js")
+        script(src="https://unpkg.com/vue@3/dist/vue.global.prod.js")
+        title Document
+    body 
+        #app
+            h2 匯率
+            label(v-for="exchange of exchanges") {{exchange.country}}
+                input(type="number" :value="dollar*exchange.exchange" @input="dollar=$event.target.value/exchange.exchange")
+                br
+        #app_2
+            h2 顏色列表
+            ul 
+                li(v-for="color in colors") {{color}}
+            h2 各家父親
+            ul 
+                li(v-for="item in home") {{item.father}}
+            h1(@click="showalert") 1234
+        #app_3 
+            h2 todolist 
+            input(type="text" placeholder="輸入代辦事項" @keyup.enter="addtodo" v-model="newtodo")
+            button(@click="show=true") 未完成
+            button(@click="show=false") 已完成
+            button(@click="show=showall") 全顯示
+            button(@click="alldone") 全部完成
+            ul 
+                li(v-for="(todo,index) of todos" v-show="todo.done!=show") 
+                    input(type="checkbox" v-model="todo.done")
+                    span {{todo.content}}
+                    button(@click="removetodo(index)") 刪除
+
+        script(src="./script/script.js") 
